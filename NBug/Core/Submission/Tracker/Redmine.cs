@@ -4,17 +4,17 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.IO;
+using System.Net;
+using System.Text;
+using System.Xml.Linq;
+
+using NBug.Core.Util.Logging;
+using NBug.Core.Util.Storage;
+
 namespace NBug.Core.Submission.Tracker
 {
-	using System;
-	using System.IO;
-	using System.Net;
-	using System.Text;
-	using System.Xml.Linq;
-
-	using NBug.Core.Util.Logging;
-	using NBug.Core.Util.Storage;
-
 	internal class Redmine : Protocol
 	{
 		internal Redmine(string connectionString, Stream reportFile)
@@ -75,11 +75,12 @@ namespace NBug.Core.Submission.Tracker
 
 		public string ApiKey { get; set; }
 
-		internal bool Send()
+	    public override bool Send()
 		{
 			HttpWebRequest request;
 
-			if (string.IsNullOrEmpty(this.ApiKey))
+            Logger.Trace("Submitting bug report to Redmine bug tracker.");
+            if (string.IsNullOrEmpty(this.ApiKey))
 			{
 				request = (HttpWebRequest)WebRequest.Create(new Uri(this.Url + "issues.xml"));
 			}

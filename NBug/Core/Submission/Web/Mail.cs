@@ -4,16 +4,16 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+
+using NBug.Core.Util.Logging;
+using NBug.Core.Util.Storage;
+
 namespace NBug.Core.Submission.Web
 {
-	using System;
-	using System.IO;
-	using System.Net;
-	using System.Net.Mail;
-
-	using NBug.Core.Util.Logging;
-	using NBug.Core.Util.Storage;
-
 	internal class Mail : Protocol
 	{
 		internal Mail(string connectionString, Stream reportFile)
@@ -88,10 +88,11 @@ namespace NBug.Core.Submission.Web
 		public string Username { get; set; }
 
 		public string Password { get; set; }
-		
-		internal bool Send()
+
+	    public override bool Send()
 		{
-			if (ReportFile == null)
+            Logger.Trace("Submitting bug report via email.");
+            if (ReportFile == null)
 			{
 				return false;
 			}

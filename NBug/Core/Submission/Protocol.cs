@@ -4,27 +4,30 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+
+using NBug.Core.Reporting.Info;
+using NBug.Core.Util.Exceptions;
+using NBug.Core.Util.Serialization;
+using NBug.Core.Util.Storage;
+
 namespace NBug.Core.Submission
 {
-	using System;
-	using System.Collections.Generic;
-	using System.IO;
-	using System.Linq;
-	using System.Reflection;
-	using System.Text.RegularExpressions;
-	using System.Xml.Linq;
-	using System.Xml.Serialization;
-
-	using NBug.Core.Reporting.Info;
-	using NBug.Core.Util.Exceptions;
-	using NBug.Core.Util.Serialization;
-	using NBug.Core.Util.Storage;
-
-	public class Protocol
+    /// <summary>
+    /// Basic class for all uploading protocols
+    /// </summary>
+	public abstract class Protocol
 	{
 		private readonly Dictionary<StoredItemType, XElement> reportItems = new Dictionary<StoredItemType, XElement>();
 
-				/// <summary>
+        /// <summary>
 		/// Initializes a new instance of the Protocol class to be extended by derived types.
 		/// </summary>
 		/// <param name="connectionString">Connection string to be parsed.</param>
@@ -162,5 +165,7 @@ namespace NBug.Core.Submission
 		{
 			return connectionString.Substring(connectionString.ToLower().IndexOf("password=") + 9).Substring(0, connectionString.Substring(connectionString.ToLower().IndexOf("password=") + 9).Length - 1);
 		}
+
+	    public abstract bool Send();
 	}
 }

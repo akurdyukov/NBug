@@ -4,15 +4,14 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.IO;
+using System.Net;
+
+using NBug.Core.Util.Logging;
+
 namespace NBug.Core.Submission.Web
 {
-	using System;
-	using System.IO;
-	using System.Net;
-	using System.Text;
-
-	using NBug.Core.Util.Logging;
-
 	internal class Ftp : Protocol
 	{
 		internal Ftp(string connectionString, Stream reportFile)
@@ -50,9 +49,10 @@ namespace NBug.Core.Submission.Web
 
 		public string Password { get; set; }
 
-		internal bool Send()
+	    public override bool Send()
 		{
-			var request = (FtpWebRequest)WebRequest.Create(new Uri(this.Url + Path.GetFileName(((FileStream)this.ReportFile).Name)));
+            Logger.Trace("Submitting bug report to via FTP connection.");
+            var request = (FtpWebRequest)WebRequest.Create(new Uri(this.Url + Path.GetFileName(((FileStream)this.ReportFile).Name)));
 
 			if (!string.IsNullOrEmpty(this.Usessl))
 			{

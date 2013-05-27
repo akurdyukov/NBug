@@ -221,12 +221,13 @@ namespace NBug.Core.Util.Storage
 			{
 				string path = Path.Combine(new[] { Path.GetTempPath(), Settings.EntryAssembly.GetName().Name });
 
-				if (Directory.Exists(path) && Directory.EnumerateFiles(path, "Exception_*.zip").Count() > 0)
+				if (Directory.Exists(path) && Directory.EnumerateFiles(path, "Exception_*.zip").Any())
 				{
 					try
 					{
 						this.FilePath = Directory.EnumerateFiles(path, "Exception_*.zip").First();
 						this.FileName = Path.GetFileName(this.FilePath);
+                        Logger.Trace("Returning windows temp storage file " + FilePath);
 						return this.stream = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read, FileShare.None);
 					}
 					catch (IOException exception)
@@ -246,7 +247,7 @@ namespace NBug.Core.Util.Storage
 			{
 				string path = Settings.NBugDirectory;
 
-				if (path != null && Directory.Exists(path) && Directory.EnumerateFiles(path, "Exception_*.zip").Count() > 0)
+				if (path != null && Directory.Exists(path) && Directory.EnumerateFiles(path, "Exception_*.zip").Any())
 				{
 					try
 					{
@@ -271,7 +272,7 @@ namespace NBug.Core.Util.Storage
 			{
 				this.isoStore = IsolatedStorageFile.GetStore(IsolatedStorageScope.User | IsolatedStorageScope.Assembly | IsolatedStorageScope.Domain, null, null);
 				
-				if (this.isoStore.GetFileNames("Exception_*.zip").Count() > 0)
+				if (this.isoStore.GetFileNames("Exception_*.zip").Any())
 				{
 					try
 					{
@@ -297,7 +298,7 @@ namespace NBug.Core.Util.Storage
 			{
 				string path = Path.GetFullPath(Settings.StoragePath);
 
-				if (Directory.Exists(path) && Directory.EnumerateFiles(path, "Exception_*.zip").Count() > 0)
+				if (Directory.Exists(path) && Directory.EnumerateFiles(path, "Exception_*.zip").Any())
 				{
 					try
 					{

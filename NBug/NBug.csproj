@@ -67,7 +67,7 @@
     <Compile Include="..\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Core\Submission\Tracker\BugNet.cs" />
+    <Compile Include="Core\Submission\ProtocolFactory.cs" />
     <Compile Include="Core\UI\Developer\InternalExceptionViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,17 +128,10 @@
     <Compile Include="Core\Reporting\Info\Report.cs" />
     <Compile Include="Core\Reporting\Info\SystemInfo.cs" />
     <Compile Include="Core\Reporting\MiniDump\DumpTypeFlag.cs" />
-    <Compile Include="Core\Submission\Database\Ado.cs" />
-    <Compile Include="Core\Submission\Database\MsSql.cs" />
-    <Compile Include="Core\Submission\Database\MySql.cs" />
     <Compile Include="Core\Submission\Dispatcher.cs" />
     <Compile Include="Core\Submission\Protocol.cs" />
     <Compile Include="Core\Submission\Protocols.cs" />
-    <Compile Include="Core\Submission\Tracker\Bugzilla.cs" />
-    <Compile Include="Core\Submission\Tracker\GitHub.cs" />
-    <Compile Include="Core\Submission\Tracker\GoogleCode.cs" />
     <Compile Include="Core\Submission\Tracker\Redmine.cs" />
-    <Compile Include="Core\Submission\Tracker\Trac.cs" />
     <Compile Include="Core\Submission\Web\Ftp.cs" />
     <Compile Include="Core\Submission\Web\Http.cs" />
     <Compile Include="Core\Submission\Web\Mail.cs" />
@@ -238,6 +231,9 @@
     <EmbeddedResource Include="Core\UI\WinForms\Normal.resx">
       <DependentUpon>Normal.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\Submission\Database\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
