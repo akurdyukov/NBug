@@ -32,6 +32,12 @@ namespace NBug.Configurator
 			var consoleOut = new StringWriter();
 			Console.SetOut(consoleOut);
 
+            if (uiMode == UIMode.None)
+            {
+                // nothing to show - ignore
+                return;
+            }
+
 			if (uiProvider == UIProvider.Console)
 			{
 				ConsoleUI.ShowDialog(uiMode, exception, report);

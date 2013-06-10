@@ -4,31 +4,31 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
+
+using NBug.Core.Reporting;
+using NBug.Core.Reporting.Info;
+using NBug.Core.Submission;
+using NBug.Core.Util;
+using NBug.Core.Util.Exceptions;
+using NBug.Core.Util.Logging;
+using NBug.Enums;
+using NBug.Properties;
+
 namespace NBug
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Configuration;
-	using System.Diagnostics;
-	using System.IO;
-	using System.Linq;
-	using System.Linq.Expressions;
-	using System.Reflection;
-	using System.Security.Cryptography;
-	using System.Text;
-	using System.Xml;
-	using System.Xml.Linq;
-	using System.Xml.XPath;
-
-	using NBug.Core.Reporting;
-	using NBug.Core.Reporting.Info;
-	using NBug.Core.Submission;
-	using NBug.Core.Util;
-	using NBug.Core.Util.Exceptions;
-	using NBug.Core.Util.Logging;
-	using NBug.Enums;
-	using NBug.Properties;
-	
 	public static class Settings
 	{
 		static Settings()

@@ -4,20 +4,20 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.IO;
+using System.Xml.Serialization;
+
+using NBug.Core.Reporting.Info;
+using NBug.Core.Reporting.MiniDump;
+using NBug.Core.UI;
+using NBug.Core.Util;
+using NBug.Core.Util.Logging;
+using NBug.Core.Util.Serialization;
+using NBug.Core.Util.Storage;
+
 namespace NBug.Core.Reporting
 {
-	using System;
-	using System.IO;
-	using System.Xml.Serialization;
-
-	using NBug.Core.Reporting.Info;
-	using NBug.Core.Reporting.MiniDump;
-	using NBug.Core.UI;
-	using NBug.Core.Util;
-	using NBug.Core.Util.Logging;
-	using NBug.Core.Util.Serialization;
-	using NBug.Core.Util.Storage;
-
 	internal class BugReport
 	{
 		/// <summary>

@@ -160,7 +160,7 @@ namespace NBug.Configurator
 		private void SaveButton_Click(object sender, EventArgs e)
 		{
 			// Validate user provide settings
-			if (string.IsNullOrEmpty(this.uiProviderComboBox.Text))
+            if (string.IsNullOrEmpty(this.uiProviderComboBox.Text) && (UIMode)this.uiModeComboBox.SelectedItem != UIMode.None)
 			{
 				MessageBox.Show(
 					"The 'User Interface > UI Provider' selection should not be left blank. Please select a value for the provider or set the UI Mode to Auto.",
@@ -175,7 +175,14 @@ namespace NBug.Configurator
 
 			// Save application settings
 			Settings.UIMode = (UIMode)this.uiModeComboBox.SelectedItem;
-			Settings.UIProvider = (UIProvider)this.uiProviderComboBox.SelectedItem;
+            if (Settings.UIMode != UIMode.None)
+            {
+                Settings.UIProvider = (UIProvider)this.uiProviderComboBox.SelectedItem;
+            }
+            else
+            {
+                Settings.UIProvider = UIProvider.Auto;
+            }
 			Settings.MiniDumpType = (MiniDumpType)this.miniDumpTypeComboBox.SelectedItem;
 			Settings.SleepBeforeSend = Convert.ToInt32(this.sleepBeforeSendNumericUpDown.Value);
 			Settings.MaxQueuedReports = Convert.ToInt32(this.maxQueuedReportsNumericUpDown.Value);
